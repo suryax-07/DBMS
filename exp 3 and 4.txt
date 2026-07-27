@@ -1,0 +1,262 @@
+Enter password: *****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 8
+Server version: 8.0.45 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2026, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> use csa0502;
+Database changed
+mysql> desc faculty;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| facno    | varchar(4)  | YES  |     | NULL    |       |
+| facname  | varchar(15) | YES  |     | NULL    |       |
+| gender   | char(1)     | YES  |     | NULL    |       |
+| dob      | date        | YES  |     | NULL    |       |
+| doj      | date        | YES  |     | NULL    |       |
+| mobileno | int         | YES  |     | NULL    |       |
+| dept     | varchar(10) | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+7 rows in set (0.10 sec)
+
+mysql> INSERT INTO faculty (facno, facname, gender, dob, doj, mobileno, dept)
+    -> VALUES
+    -> ('F001', 'Arun', 'M', '1985-06-15', '2012-07-10', 987654321, 'CSE'),
+    -> ('F002', 'Priya', 'F', '1988-09-20', '2015-06-18', 876543210, 'ECE'),
+    -> ('F003', 'Karthik', 'M', '1983-02-11', '2010-01-05', 765432109, 'EEE'),
+    -> ('F004', 'Divya', 'F', '1990-12-30', '2018-08-22', 654321098, 'IT'),
+    -> ('F005', 'Ramesh', 'M', '1986-04-25', '2013-11-14', 543210987, 'MECH');
+Query OK, 5 rows affected (0.09 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> select *from faculty;
++-------+---------+--------+------------+------------+-----------+------+
+| facno | facname | gender | dob        | doj        | mobileno  | dept |
++-------+---------+--------+------------+------------+-----------+------+
+| F001  | Arun    | M      | 1985-06-15 | 2012-07-10 | 987654321 | CSE  |
+| F002  | Priya   | F      | 1988-09-20 | 2015-06-18 | 876543210 | ECE  |
+| F003  | Karthik | M      | 1983-02-11 | 2010-01-05 | 765432109 | EEE  |
+| F004  | Divya   | F      | 1990-12-30 | 2018-08-22 | 654321098 | IT   |
+| F005  | Ramesh  | M      | 1986-04-25 | 2013-11-14 | 543210987 | MECH |
++-------+---------+--------+------------+------------+-----------+------+
+5 rows in set (0.00 sec)
+
+mysql> desc student;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| regno    | int         | YES  |     | NULL    |       |
+| name     | varchar(15) | YES  |     | NULL    |       |
+| gender   | char(1)     | YES  |     | NULL    |       |
+| dob      | date        | YES  |     | NULL    |       |
+| mobileno | int         | YES  |     | NULL    |       |
+| city     | varchar(15) | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+6 rows in set (0.02 sec)
+
+mysql> INSERT INTO student (regno, name, gender, dob, mobileno, city)
+    -> VALUES
+    -> (101, 'Arun', 'M', '2005-03-15', 987654321, 'Chennai'),
+    -> (102, 'Priya', 'F', '2004-07-22', 876543210, 'Coimbatore'),
+    -> (103, 'Karthik', 'M', '2005-01-10', 765432109, 'Madurai'),
+    -> (104, 'Divya', 'F', '2004-11-18', 654321098, 'Salem'),
+    -> (105, 'Rahul', 'M', '2005-09-05', 543210987, 'Trichy');
+Query OK, 5 rows affected (0.07 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> select *from student;
++-------+---------+--------+------------+-----------+------------+
+| regno | name    | gender | dob        | mobileno  | city       |
++-------+---------+--------+------------+-----------+------------+
+|   101 | Arun    | M      | 2005-03-15 | 987654321 | Chennai    |
+|   102 | Priya   | F      | 2004-07-22 | 876543210 | Coimbatore |
+|   103 | Karthik | M      | 2005-01-10 | 765432109 | Madurai    |
+|   104 | Divya   | F      | 2004-11-18 | 654321098 | Salem      |
+|   105 | Rahul   | M      | 2005-09-05 | 543210987 | Trichy     |
++-------+---------+--------+------------+-----------+------------+
+5 rows in set (0.00 sec)
+
+mysql> desc department;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| deptno   | varchar(4)  | YES  |     | NULL    |       |
+| deptname | varchar(15) | YES  |     | NULL    |       |
+| depthead | varchar(4)  | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+3 rows in set (0.04 sec)
+
+mysql> INSERT INTO department (deptno, deptname, depthead)
+    -> VALUES
+    -> ('D001', 'CSE', 'F001'),
+    -> ('D002', 'ECE', 'F002'),
+    -> ('D003', 'EEE', 'F003'),
+    -> ('D004', 'IT', 'F004'),
+    -> ('D005', 'MECH', 'F005');
+Query OK, 5 rows affected (0.04 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> select *from student;
++-------+---------+--------+------------+-----------+------------+
+| regno | name    | gender | dob        | mobileno  | city       |
++-------+---------+--------+------------+-----------+------------+
+|   101 | Arun    | M      | 2005-03-15 | 987654321 | Chennai    |
+|   102 | Priya   | F      | 2004-07-22 | 876543210 | Coimbatore |
+|   103 | Karthik | M      | 2005-01-10 | 765432109 | Madurai    |
+|   104 | Divya   | F      | 2004-11-18 | 654321098 | Salem      |
+|   105 | Rahul   | M      | 2005-09-05 | 543210987 | Trichy     |
++-------+---------+--------+------------+-----------+------------+
+5 rows in set (0.00 sec)
+
+mysql> select *from department;
++--------+----------+----------+
+| deptno | deptname | depthead |
++--------+----------+----------+
+| scif   | cse      | hod      |
+| D001   | CSE      | F001     |
+| D002   | ECE      | F002     |
+| D003   | EEE      | F003     |
+| D004   | IT       | F004     |
+| D005   | MECH     | F005     |
++--------+----------+----------+
+6 rows in set (0.00 sec)
+
+mysql> desc course;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| courseno   | varchar(3)  | YES  |     | NULL    |       |
+| coursedesc | varchar(14) | YES  |     | NULL    |       |
+| coursetype | char(1)     | YES  |     | NULL    |       |
+| semno      | char(1)     | YES  |     | NULL    |       |
+| hallno     | varchar(4)  | YES  |     | NULL    |       |
+| facno      | varchar(4)  | YES  |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+6 rows in set (0.01 sec)
+
+mysql> INSERT INTO course (courseno, coursedesc, coursetype, semno, hallno, facno)
+    -> VALUES
+    -> ('C01', 'Programming', 'T', '1', 'H101', 'F001'),
+    -> ('C02', 'DBMS', 'T', '2', 'H102', 'F002'),
+    -> ('C03', 'Networks', 'T', '3', 'H103', 'F003'),
+    -> ('C04', 'AI', 'P', '4', 'L201', 'F004'),
+    -> ('C05', 'Cloud', 'T', '5', 'H104', 'F005');
+Query OK, 5 rows affected (0.07 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> select *from course;
++----------+-------------+------------+-------+--------+-------+
+| courseno | coursedesc  | coursetype | semno | hallno | facno |
++----------+-------------+------------+-------+--------+-------+
+| C01      | Programming | T          | 1     | H101   | F001  |
+| C02      | DBMS        | T          | 2     | H102   | F002  |
+| C03      | Networks    | T          | 3     | H103   | F003  |
+| C04      | AI          | P          | 4     | L201   | F004  |
+| C05      | Cloud       | T          | 5     | H104   | F005  |
++----------+-------------+------------+-------+--------+-------+
+5 rows in set (0.00 sec)
+
+mysql> UPDATE student
+    -> SET name = 'Arun Kumar'
+    -> WHERE regno = 101;
+Query OK, 1 row affected (0.07 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> DESC STUDENT;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| regno    | int         | YES  |     | NULL    |       |
+| name     | varchar(15) | YES  |     | NULL    |       |
+| gender   | char(1)     | YES  |     | NULL    |       |
+| dob      | date        | YES  |     | NULL    |       |
+| mobileno | int         | YES  |     | NULL    |       |
+| city     | varchar(15) | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+6 rows in set (0.01 sec)
+
+mysql> SELECT *FROM STUDENT;
++-------+------------+--------+------------+-----------+------------+
+| regno | name       | gender | dob        | mobileno  | city       |
++-------+------------+--------+------------+-----------+------------+
+|   101 | Arun Kumar | M      | 2005-03-15 | 987654321 | Chennai    |
+|   102 | Priya      | F      | 2004-07-22 | 876543210 | Coimbatore |
+|   103 | Karthik    | M      | 2005-01-10 | 765432109 | Madurai    |
+|   104 | Divya      | F      | 2004-11-18 | 654321098 | Salem      |
+|   105 | Rahul      | M      | 2005-09-05 | 543210987 | Trichy     |
++-------+------------+--------+------------+-----------+------------+
+5 rows in set (0.00 sec)
+
+mysql> DELETE FROM faculty
+    -> WHERE facno = 'F004';
+Query OK, 1 row affected (0.06 sec)
+
+mysql> select *from faculty;
++-------+---------+--------+------------+------------+-----------+------+
+| facno | facname | gender | dob        | doj        | mobileno  | dept |
++-------+---------+--------+------------+------------+-----------+------+
+| F001  | Arun    | M      | 1985-06-15 | 2012-07-10 | 987654321 | CSE  |
+| F002  | Priya   | F      | 1988-09-20 | 2015-06-18 | 876543210 | ECE  |
+| F003  | Karthik | M      | 1983-02-11 | 2010-01-05 | 765432109 | EEE  |
+| F005  | Ramesh  | M      | 1986-04-25 | 2013-11-14 | 543210987 | MECH |
++-------+---------+--------+------------+------------+-----------+------+
+4 rows in set (0.00 sec)
+
+mysql> update faculty
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> UPDATE faculty
+    -> SET dob = '1967-06-15'
+    -> WHERE facname = 'priya';
+Query OK, 1 row affected (0.05 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select *from faculty;
++-------+---------+--------+------------+------------+-----------+------+
+| facno | facname | gender | dob        | doj        | mobileno  | dept |
++-------+---------+--------+------------+------------+-----------+------+
+| F001  | Arun    | M      | 1985-06-15 | 2012-07-10 | 987654321 | CSE  |
+| F002  | Priya   | F      | 1967-06-15 | 2015-06-18 | 876543210 | ECE  |
+| F003  | Karthik | M      | 1983-02-11 | 2010-01-05 | 765432109 | EEE  |
+| F005  | Ramesh  | M      | 1986-04-25 | 2013-11-14 | 543210987 | MECH |
++-------+---------+--------+------------+------------+-----------+------+
+4 rows in set (0.00 sec)
+
+mysql> DELETE FROM faculty
+    -> WHERE TIMESTAMPDIFF(YEAR, dob, CURDATE()) > 65;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> select *from faculty;
++-------+---------+--------+------------+------------+-----------+------+
+| facno | facname | gender | dob        | doj        | mobileno  | dept |
++-------+---------+--------+------------+------------+-----------+------+
+| F001  | Arun    | M      | 1985-06-15 | 2012-07-10 | 987654321 | CSE  |
+| F002  | Priya   | F      | 1967-06-15 | 2015-06-18 | 876543210 | ECE  |
+| F003  | Karthik | M      | 1983-02-11 | 2010-01-05 | 765432109 | EEE  |
+| F005  | Ramesh  | M      | 1986-04-25 | 2013-11-14 | 543210987 | MECH |
++-------+---------+--------+------------+------------+-----------+------+
+4 rows in set (0.04 sec)
+
+mysql> DESC FACULTY;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| facno    | varchar(4)  | YES  |     | NULL    |       |
+| facname  | varchar(15) | YES  |     | NULL    |       |
+| gender   | char(1)     | YES  |     | NULL    |       |
+| dob      | date        | YES  |     | NULL    |       |
+| doj      | date        | YES  |     | NULL    |       |
+| mobileno | int         | YES  |     | NULL    |       |
+| dept     | varchar(10) | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+7 rows in set (0.05 sec)
+
+mysql>
