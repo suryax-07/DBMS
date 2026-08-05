@@ -1,0 +1,93 @@
+Enter password: *****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 9
+Server version: 8.0.45 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2026, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> -- Q1
+mysql> SELECT dept, COUNT(*) AS No_of_Faculty
+    -> FROM faculty
+    -> GROUP BY dept;
+ERROR 1046 (3D000): No database selected
+mysql>
+mysql> -- Q2
+mysql> SELECT facno, COUNT(*) AS No_of_Courses
+    -> FROM course
+    -> GROUP BY facno
+    -> HAVING COUNT(*) > 1;
+ERROR 1046 (3D000): No database selected
+mysql>
+mysql> -- Q3
+mysql> SELECT name, gender, mobileno
+    -> FROM student
+    -> ORDER BY regno ASC;
+ERROR 1046 (3D000): No database selected
+mysql>
+mysql> -- Q4
+mysql> SELECT *
+    -> FROM faculty
+    -> ORDER BY dob ASC;
+ERROR 1046 (3D000): No database selected
+mysql> use csa0502;
+Database changed
+mysql> -- Q1
+mysql> SELECT dept, COUNT(*) AS No_of_Faculty
+    -> FROM faculty
+    -> GROUP BY dept;
++------+---------------+
+| dept | No_of_Faculty |
++------+---------------+
+| CSE  |             1 |
+| ECE  |             1 |
+| EEE  |             1 |
+| MECH |             1 |
++------+---------------+
+4 rows in set (0.18 sec)
+
+mysql>
+mysql> -- Q2
+mysql> SELECT facno, COUNT(*) AS No_of_Courses
+    -> FROM course
+    -> GROUP BY facno
+    -> HAVING COUNT(*) > 1;
+Empty set (0.02 sec)
+
+mysql>
+mysql> -- Q3
+mysql> SELECT name, gender, mobileno
+    -> FROM student
+    -> ORDER BY regno ASC;
++------------+--------+-----------+
+| name       | gender | mobileno  |
++------------+--------+-----------+
+| Arun Kumar | M      | 987654321 |
+| Priya      | F      | 876543210 |
+| Karthik    | M      | 765432109 |
+| Divya      | F      | 654321098 |
+| Rahul      | M      | 543210987 |
++------------+--------+-----------+
+5 rows in set (0.02 sec)
+
+mysql>
+mysql> -- Q4
+mysql> SELECT *
+    -> FROM faculty
+    -> ORDER BY dob ASC;
++-------+---------+--------+------------+------------+-----------+------+
+| facno | facname | gender | dob        | doj        | mobileno  | dept |
++-------+---------+--------+------------+------------+-----------+------+
+| F002  | Priya   | F      | 1967-06-15 | 2015-06-18 | 876543210 | ECE  |
+| F003  | Karthik | M      | 1983-02-11 | 2010-01-05 | 765432109 | EEE  |
+| F001  | Arun    | M      | 1985-06-15 | 2012-07-10 | 987654321 | CSE  |
+| F005  | Ramesh  | M      | 1986-04-25 | 2013-11-14 | 543210987 | MECH |
++-------+---------+--------+------------+------------+-----------+------+
+4 rows in set (0.11 sec)
+
+mysql>

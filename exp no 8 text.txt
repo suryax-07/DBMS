@@ -1,0 +1,71 @@
+Enter password: *****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 12
+Server version: 8.0.45 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2026, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> use csa0502;
+Database changed
+mysql> SELECT *
+    -> FROM student
+    -> WHERE dob < (
+    ->     SELECT DATE_SUB(CURDATE(),
+    ->            INTERVAL TIMESTAMPDIFF(YEAR, dob, CURDATE()) YEAR)
+    ->     FROM student
+    ->     ORDER BY dob
+    ->     LIMIT 1
+    -> );
++-------+-------+--------+------------+-----------+------------+
+| regno | name  | gender | dob        | mobileno  | city       |
++-------+-------+--------+------------+-----------+------------+
+|   102 | Priya | F      | 2004-07-22 | 876543210 | Coimbatore |
++-------+-------+--------+------------+-----------+------------+
+1 row in set (0.05 sec)
+
+mysql> SELECT *
+    -> FROM faculty f
+    -> WHERE (
+    ->     SELECT COUNT(*)
+    ->     FROM course c
+    ->     WHERE c.facno = f.facno
+    -> ) > 1;
+Empty set (0.04 sec)
+
+mysql> SELECT facname, doj
+    -> FROM faculty
+    -> WHERE doj = (
+    ->     SELECT MAX(doj)
+    ->     FROM faculty
+    -> );
++---------+------------+
+| facname | doj        |
++---------+------------+
+| Priya   | 2015-06-18 |
++---------+------------+
+1 row in set (0.02 sec)
+
+mysql> SELECT courseno, coursedesc, facno
+    -> FROM course c
+    -> WHERE (
+    ->     SELECT COUNT(*)
+    ->     FROM course c2
+    ->     WHERE c2.facno = c.facno
+    -> ) >
+    -> (
+    ->     SELECT AVG(course_count)
+    ->     FROM (
+    ->         SELECT COUNT(*) AS course_count
+    ->         FROM course
+    ->         GROUP BY facno
+    ->     ) AS avg_table
+    -> );
+Empty set (0.02 sec)
+
+mysql>
